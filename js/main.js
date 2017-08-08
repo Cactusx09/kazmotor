@@ -11,9 +11,11 @@ $(document).ready(function(){
 	});
 
 	//submenu
-	$('.header__submenu').click(function(){
-		$(this).toggleClass('_active');
-	})
+	$('.header__submenu').mouseenter(function(){
+		$(this).addClass('_active');
+	}).mouseleave(function(){
+		$(this).removeClass('_active');
+	});
 	//search
 	$('.header__search_btn, .footer__search_btn').click(function(){
 		var btn = $(this),
@@ -50,6 +52,10 @@ $(document).ready(function(){
 		nav.prev('.footer__search_input').removeClass('_active');
 	});
 
+
+	if(Modernizr.mq('only screen and (max-width: 980.5px)')){
+		$('.s_contacts textarea').insertBefore('.s_contacts .btn_blue')
+	}
 	//main slider
 	if($('.s_main__slider').length){
 		if(Modernizr.mq('only screen and (min-width: 763.5px)')){
@@ -59,6 +65,8 @@ $(document).ready(function(){
 				controls: false,
 				pager: false,
 				loop: true,
+				auto: true,
+				pause: 3500,
 				speed: 250,
 				onBeforeSlide: function(){
 					var n = sl_main.getCurrentSlideCount()-1;
@@ -350,6 +358,11 @@ $(document).ready(function(){
 		txt = $(this).data('txt');
 		popup.find('h2').text(txt);
 		popup.find('.g_input_name').val(txt);
+		if(popup.find('.g_input_desc').length){
+			var desc = $(this).closest('.s_articles__item')
+			.find('.s_articles__item_desc').html();
+			popup.find('.g_input_desc').val(desc);
+		}
 		$('.popup.popup_'+name+', .overlay').addClass('_visible');
 	});
 	$('.overlay, ._close_pop').click(function(e){
@@ -369,7 +382,8 @@ $(document).ready(function(){
 				form: {required: true},
 				phone: {required: true},
 				mail: {required: true},
-				question: {required: true}
+				question: {required: true},
+				desc: {required: false}
 			},
 			messages: {},
 			errorPlacement: function (error, element) {},
@@ -428,7 +442,7 @@ $(document).ready(function(){
 				// Описание опорных точек мультимаршрута.
 				referencePoints: [
 					[52.299335, 76.964236],
-					[52.304268, 76.982239]
+					[52.305599, 76.982239]
 				],
 				// Параметры маршрутизации.
 				params: {
@@ -444,18 +458,10 @@ $(document).ready(function(){
 			var trafficButton = new ymaps.control.Button({
 				data: { content: "Учитывать пробки" },
 				options: { selectOnClick: true }
-			}),
-				viaPointButton = new ymaps.control.Button({
-					data: { content: "Добавить транзитную точку" },
-					options: { selectOnClick: true }
-				});
+			});
 
 			// Объявляем обработчики для кнопок.
 			trafficButton.events.add('select', function () {
-				/**
-         * Задаем параметры маршрутизации для модели мультимаршрута.
-         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/multiRouter.MultiRouteModel.xml#setParams
-         */
 				multiRoute.model.setParams({ avoidTrafficJams: true }, true);
 			});
 
@@ -463,29 +469,11 @@ $(document).ready(function(){
 				multiRoute.model.setParams({ avoidTrafficJams: false }, true);
 			});
 
-			viaPointButton.events.add('select', function () {
-				var referencePoints = multiRoute.model.getReferencePoints();
-				referencePoints.splice(1, 0, "Москва, ул. Солянка, 7");
-				/**
-         * Добавляем транзитную точку в модель мультимаршрута.
-         * Обратите внимание, что транзитные точки могут находится только
-         * между двумя путевыми точками, т.е. не могут быть крайними точками маршрута.
-         * @see https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/multiRouter.MultiRouteModel.xml#setReferencePoints
-         */
-				multiRoute.model.setReferencePoints(referencePoints, [1]);
-			});
-
-			viaPointButton.events.add('deselect', function () {
-				var referencePoints = multiRoute.model.getReferencePoints();
-				referencePoints.splice(1, 1);
-				multiRoute.model.setReferencePoints(referencePoints, []);
-			});
-
 			// Создаем карту с добавленными на нее кнопками.
 			var myMap = new ymaps.Map('map', {
 				center: [52.299335, 76.964236],
 				zoom: 8,
-				controls: [trafficButton, viaPointButton]
+				controls: [trafficButton]
 			}, {
 				buttonMaxWidth: 300
 			});

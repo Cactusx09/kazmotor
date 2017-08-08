@@ -629,6 +629,7 @@ button{
 			i{
 				margin-right: 20px;
 				min-width: 40px;
+				animation: shake 3s cubic-bezier(.36,.07,.19,.97) both infinite;
 			}
 			a{
 				font-weight: 700;
@@ -1152,6 +1153,11 @@ button{
 	.btn_blue{
 		margin-top: 15px;
 		width: 250px;
+	}
+	.s_cols__left{
+		input{
+			margin-bottom: 15px;
+		}
 	}
 }
 .s_reviews{
@@ -2272,6 +2278,9 @@ button{
 	&__item{
 		padding: 40px;
 	}
+	.s_cols__body{
+		flex-wrap: wrap;
+	}
 	&__top{
 		@extend ._flex_sb_c;
 		&_name{
@@ -2370,6 +2379,7 @@ button{
 		}
 		&_btn{
 			width: 100%;
+			background-color: #b90039;
 		}
 	}
 }
@@ -2620,6 +2630,16 @@ button{
 			padding: 30px 30px 20px;
 		}
 	}
+	.s_card{
+		&__item{
+			width: 100%;
+		}
+		&__top,
+		&__bot{
+			flex-direction: column;
+			align-items: flex-start !important;
+		}
+	}
 }
 @media only screen and (max-width: 980.5px) {
 	.header,
@@ -2812,6 +2832,19 @@ button{
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
+	}
+	.s_contacts{
+		text-align: center;
+	}
+	.s_contacts__right {
+		flex-wrap: wrap;
+		justify-content: center !important;
+		&_col{
+			width: 100%;
+		}
+		textarea{
+			margin-left: 0 !important;
+		}
 	}
 }
 @media only screen and (max-width: 768.5px) {
@@ -3098,6 +3131,9 @@ button{
 		top: 11px;
 		right: 20px;
 	}
+	.s_card__item{
+		padding: 25px;
+	}
 }
 @media only screen and (max-width: 500.5px) {
 	body,html{
@@ -3190,7 +3226,7 @@ button{
 		padding-left: 20px;
 		padding-right: 20px;
 		h1{
-			font-size: 2rem;
+			font-size: 1.75rem;
 		}
 		.btn_big{
 			height: 50px;
@@ -3352,6 +3388,9 @@ button{
 	.s_head h1{
 		font-size: 2.15rem;
 	}
+	.s_card__item{
+		padding: 15px;
+	}
 }
 
 ::-webkit-scrollbar
@@ -3387,6 +3426,66 @@ button{
 @keyframes op {
 	from { opacity: 0;}
 	to { opacity: 1;}
+}
+@keyframes shake {
+	2.5%, 22.5% {
+		transform: translate3d(-1px, 0, 0);
+	}
+
+	5%, 20% {
+		transform: translate3d(2px, 0, 0);
+	}
+
+	7.5%, 12.5%, 17.5% {
+		transform: translate3d(-3px, 0, 0);
+	}
+
+	10%, 15% {
+		transform: translate3d(3px, 0, 0);
+	}
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	select,
+	textarea,
+	input {
+		font-size: 16px;
+	}
+}
+/*** Styles added to fix the issue with zoom in on iphone ***/
+/* iPhone < 5: */
+@media screen and (device-aspect-ratio: 2/3) {
+	select, textarea, input[type="text"], input[type="password"],
+	input[type="datetime"], input[type="datetime-local"],
+	input[type="date"], input[type="month"], input[type="time"],
+	input[type="week"], input[type="number"], input[type="email"],
+	input[type="url"]{ font-size: 16px; }
+}
+
+/* iPhone 5, 5C, 5S, iPod Touch 5g */
+@media screen and (device-aspect-ratio: 40/71) {
+	select, textarea, input[type="text"], input[type="password"],
+	input[type="datetime"], input[type="datetime-local"],
+	input[type="date"], input[type="month"], input[type="time"],
+	input[type="week"], input[type="number"], input[type="email"],
+	input[type="url"]{ font-size: 16px; }
+}
+
+/* iPhone 6, iPhone 6s, iPhone 7 portrait/landscape */
+@media screen and (device-aspect-ratio: 375/667) {
+	select, textarea, input[type="text"], input[type="password"],
+	input[type="datetime"], input[type="datetime-local"],
+	input[type="date"], input[type="month"], input[type="time"],
+	input[type="week"], input[type="number"], input[type="email"],
+	input[type="url"]{ font-size: 16px; }
+}
+
+/* iPhone 6 Plus, iPhone 6s Plus, iPhone 7 Plus portrait/landscape */
+@media screen and (device-aspect-ratio: 9/16) {
+	select, textarea, input[type="text"], input[type="password"],
+	input[type="datetime"], input[type="datetime-local"],
+	input[type="date"], input[type="month"], input[type="time"],
+	input[type="week"], input[type="number"], input[type="email"],
+	input[type="url"]{ font-size: 16px; }
 }
 
 /* ==========================================================

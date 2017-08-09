@@ -52,6 +52,7 @@ $(document).ready(function(){
 		nav.prev('.footer__search_input').removeClass('_active');
 	});
 
+	$('.g_txt table').wrap('<div class="g_txt__table"></div>');
 
 	if(Modernizr.mq('only screen and (max-width: 980.5px)')){
 		$('.s_contacts textarea').insertBefore('.s_contacts .btn_blue')

@@ -16,6 +16,9 @@ $(document).ready(function(){
 	}).mouseleave(function(){
 		$(this).removeClass('_active');
 	});
+	$('.header__submenu').click(function(){
+		$(this).toggleClass('_active');
+	});
 	//search
 	$('.header__search_btn, .footer__search_btn').click(function(){
 		var btn = $(this),

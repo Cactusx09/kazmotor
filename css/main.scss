@@ -675,10 +675,11 @@ button{
 	}
 	&__submenu{
 		position: relative;
-		z-index: 2;
+		z-index: 3;
 		user-select: none;
 		cursor: pointer;
 		&._active{
+			z-index: 99;
 			svg{
 				transform: rotate(180deg);
 			}

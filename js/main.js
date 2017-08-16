@@ -65,13 +65,13 @@ $(document).ready(function(){
 		if(Modernizr.mq('only screen and (min-width: 763.5px)')){
 			var sl_main = $('.s_main__slider').lightSlider({
 				item: 1,
-				vertical: true,
 				controls: false,
 				pager: false,
 				loop: true,
 				auto: true,
 				pause: 3500,
-				speed: 250,
+				speed: 350,
+				pauseOnHover: true,
 				onBeforeSlide: function(){
 					var n = sl_main.getCurrentSlideCount()-1;
 					$('.s_main__pager span').eq(n).addClass('_active')
@@ -327,6 +327,17 @@ $(document).ready(function(){
 	$('.s_questions__question_head').click(function(){
 		$(this).closest('.s_questions__question').toggleClass('_active');
 	});
+
+	//sticky
+	var sticky = $(".s_article__aside_subscribe");
+	if(sticky.length){
+		sticky.sticky({
+			topSpacing: 40,
+			bottomSpacing: 200
+		});
+		var rt = ($(window).width() - (sticky.offset().left + sticky.outerWidth()));
+		sticky.css('right',rt+'px')
+	}
 
 	//read more
 	$('.s_reviews__item_more').click(function(e){

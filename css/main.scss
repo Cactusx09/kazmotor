@@ -571,7 +571,7 @@ button{
 	&__logo{
 		background-color: $b;
 		min-width: 120px;
-		height: 121px;
+		min-height: 121px;
 		@extend ._flex_c_c;
 		transition: $t;
 		&:hover{
@@ -591,14 +591,14 @@ button{
 			h3{
 				font-weight: 700;
 				color: $b;
-				font-size: 1.563rem;
+				font-size: 2.13rem;
 				text-transform: uppercase;
 				line-height: .9;
 				font-family: Roboto Condensed;
 			}
 			small{
 				font-family: Roboto Condensed;
-				color: #4f4f4f;
+				color: $b;
 				font-size: 0.75rem;
 				text-transform: uppercase;
 				margin-left: 3px;
@@ -711,10 +711,13 @@ button{
 			box-shadow: 0 0.25rem 1.125rem rgba(0, 0, 0, 0.08);
 			padding: 20px;
 			top: 100%;
-			width: 245px;
 			left: 0;
 			visibility: hidden;
 			opacity: 0;
+			width: 1000px;
+			max-width: 618px;
+			min-height: 150px;
+			background-image: url('../images/bg.jpg');
 			a{
 				font-weight: 400;
 				color: #000;
@@ -809,6 +812,10 @@ button{
 	&__item{
 		@extend ._flex_sb_c;
 		padding: 30px 0;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		height: 450px;
 	}
 	&__left{
 		padding: 15px 30px 15px 60px;
@@ -2641,6 +2648,10 @@ button{
 			flex-direction: column;
 			align-items: flex-start !important;
 		}
+	}
+	.header__submenu_body{
+		max-width: calc(100% + 20px);
+		left: -20px;
 	}
 }
 @media only screen and (max-width: 980.5px) {

@@ -330,7 +330,7 @@ $(document).ready(function(){
 
 	//sticky
 	var sticky = $(".s_article__aside_subscribe");
-	if(sticky.length){
+	if(sticky.length && Modernizr.mq('only screen and (min-width: 980.5px)')){
 		sticky.sticky({
 			topSpacing: 40,
 			bottomSpacing: 200

@@ -1239,13 +1239,18 @@ button{
 			}
 		}
 		&_img{
-			width: 65px;
 			height: 65px;
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: cover;
-			border: 1px solid  $b;
 			margin-right: 25px;
+			max-width: 150px;
+			@extend ._flex_c_c;
+			padding-bottom: 2px;
+			img{
+				max-height: 55px;
+				max-width: 100%;
+			}
 		}
 		&_txt{
 			p{
